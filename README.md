@@ -1,6 +1,5 @@
-# Gofind.ai Ad Server Project
+# Gofind.ai Image Result Blog Project
 
-An ad server that allow manufacturers to register their advertise campaigns
-to bit on Gofind.ai's ad slots. The system consists of frontend written in Flask 
-for user to manage their campaigns, database storing ad and user information, and
-backend logic for ad bidding when an ad slot show up. 
+This is a quick demo showing the image and the resulting product from our search engine. 
+It showes 9 images in the front page and each image can be selected. Within each image
+there will be the main image, each product with their image, price, and link to buy.
