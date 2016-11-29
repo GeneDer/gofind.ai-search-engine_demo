@@ -22,7 +22,7 @@ app.config.from_object(__name__)
 
 def connect_to_database():
     #return sqlite3.connect(app.config['DATABASE'])
-    return sqlite3.connect('adserver.db')
+    return sqlite3.connect('main_images.db')
 
 def get_db():
     db = getattr(g, 'db', None)
@@ -60,6 +60,11 @@ def number_checking(s):
 
 @app.route('/')
 def index():
+    rows = select_query("""SELECT COUNT(*), MIN(id), MAX(id)
+                           FROM main_images""",
+                        [])
+    print rows
+    
     if 'username' in login_session:
         return redirect(url_for('welcomeback'))
     else:
