@@ -7,14 +7,25 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-class Main_images(Base):
-    __tablename__ = 'main_images'
+class Posts(Base):
+    __tablename__ = 'posts'
 
     id = Column(Integer, primary_key=True)
     main_image_url = Column(String(2000), nullable=False)
     source_url = Column(String(2000), nullable=False)
 
-engine = create_engine('sqlite:///main_images.db')
+class Results(Base):
+    __tablename__ = 'results'
+
+    id = Column(Integer, primary_key=True)
+    post_id = Column(Integer, nullable=False)
+    image_url = Column(String(2000), nullable=False)
+    seller_url = Column(String(2000), nullable=False)
+    seller_name = Column(String(200), nullable=False)
+    item_name = Column(String(200), nullable=False)
+    price = Column(Numeric(12, 2), nullable=False)
+
+engine = create_engine('sqlite:///search_engine_demo.db')
 
 
 Base.metadata.create_all(engine)
