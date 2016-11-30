@@ -1,6 +1,7 @@
 from collections import Counter
 import sqlite3
 import time
+import os
 
 from flask import Flask, request, g, render_template, redirect, url_for, jsonify, abort
 from flask import session as login_session
@@ -13,7 +14,8 @@ MAX_PAGE = (MAX_POST - 1)/9 + 1
 
 
 def connect_to_database():
-    return sqlite3.connect('search_engine_demo.db')
+    return sqlite3.connect(os.path.join(app.root_path,
+                                        'search_engine_demo.db'))
 
 def get_db():
     db = getattr(g, 'db', None)
