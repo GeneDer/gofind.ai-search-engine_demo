@@ -14,7 +14,7 @@ class Posts(Base):
     main_image_url = Column(String(2000), nullable=False)
     source_url = Column(String(2000), nullable=False)
     tags = Column(String(2000), nullable=False)
-    Image_name = Column(String(200), nullable=False)
+    image_name = Column(String(200), nullable=False)
 
 class Results(Base):
     __tablename__ = 'results'

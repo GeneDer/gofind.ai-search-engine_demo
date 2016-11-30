@@ -235,7 +235,7 @@ h1 {
 
 .gettheapp {
     margin-top: 100px;
-    font-family: 'Fira Sans' !important; 
+    font-family: 'Open Sans' !important; 
     font-weight: 400 !important; 
     
 }
@@ -270,4 +270,85 @@ h1 {
 a {
     text-decoration: none !important; 
     color: #911D22 !important;
+}
+
+.demophone-section {
+    width: 200% !important; 
+    height: auto;
+}
+
+.container-bg {
+width:auto;
+margin: 0 auto;
+position:relative;
+}
+
+.banner-bg {
+background-image: url(assets/img/demo-phone.png);
+background-repeat: no-repeat;
+background-position: center center;
+background-attachment: fixed;
+
+}
+    
+.web-version-app {
+    width: 30%;
+    height: auto;
+}
+
+.celebrity-title {
+    color: #000000 !important; 
+    font-family: 'Roboto Regular' !important; 
+    position:relative;
+    padding-top: 30px;
+    
+    
+}
+
+.logo-section {
+    background-color: #000000 !important; 
+}
+
+.main-demo {
+    width: 55% !important;
+    height: auto !important;
+    position: relative;
+    margin-top: 30px;
+    
+}
+
+.demo-2-description {
+    font-family: 'Lato-Light' !important; 
+    font-size: 19px; 
+    line-height: 30px; 
+    margin-top: -100px; 
+}
+
+.thumbnail {
+    width:12%;
+    margin-top: 25px; 
+    display: inline-block; 
+    margin-right:20px; 
+}
+
+.price-tags p {
+   color: white !important; 
+    background-color: black !important; 
+}
+
+.thumbnail-1 {
+    position: relative;
+    margin-top:-130px; 
+    display: inline-block;
+    width:12%; 
+    margin-right:20px
+    
+    
+}
+
+.thumbnail-2 {
+    width:12%;
+    display: inline-block; 
+    margin-right:20px; 
+    margin-top:-120px;
 }

@@ -41,15 +41,15 @@ with open("FIN_JSON_tumblr_celebrity.json", 'r') as f:
 
         main_image_url = post['image_url']
         source_url = post['blog_url']
-        tags = ",".join(post['tags'])
-        Image_name = post['blog_name']
+        tags = " #".join(post['tags'])
+        image_name = post['blog_name']
 
         cur.execute("""INSERT INTO posts
                        (id, main_image_url, source_url,
-                       tags, Image_name)
+                       tags, image_name)
                        VALUES (?, ?, ?, ?, ?)""",
                     [count, main_image_url, source_url,
-                     tags, Image_name])
+                     tags, image_name])
             
         post_result = []
         for results in post['search_result']:
