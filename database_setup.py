@@ -13,6 +13,8 @@ class Posts(Base):
     id = Column(Integer, primary_key=True)
     main_image_url = Column(String(2000), nullable=False)
     source_url = Column(String(2000), nullable=False)
+    tags = Column(String(2000), nullable=False)
+    Image_name = Column(String(200), nullable=False)
 
 class Results(Base):
     __tablename__ = 'results'

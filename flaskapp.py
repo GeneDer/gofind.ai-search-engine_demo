@@ -24,11 +24,15 @@ def get_db():
 
 @app.route('/')
 def index():
-    rows = select_query("""SELECT COUNT(*), MIN(id), MAX(id)
-                           FROM posts""",
-                        [])
-    print rows
-    return redirect(url_for('page', page_number=1))
+    return render_template("index.html")
+
+@app.route('/advertiser')
+def advertiser():
+    return render_template("advertiser.html")
+
+@app.route('/influencer')
+def influencer():
+    return render_template("influencer.html")
 
 @app.route('/page/<int:page_number>')
 def page(page_number):

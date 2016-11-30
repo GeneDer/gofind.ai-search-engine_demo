@@ -1,61 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index</title>
-    <link href="../static/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/jumbotron-narrow.css" rel="stylesheet">
-    <link rel="icon" href="../static/gofind2.png">
-  </head>
-  
-  <body>
+<html dir="ltr" lang="en-US">
+<head>
     
-    <div class="container text-center">
-      <div class="header">
-        <div class="row header-backgroung">
-          <div class="col-md-4 large-text">
-            <a href="{{ url_for('index') }}">
-              <img src="../static/gofind.png" class="img-responsive pull-right" alt="gofind logo">
-            </a>
-          </div>
-          <div class="col-md-8 pull-left large-text">
-            <div class="large-text bold-text">GO</div>
-            <div class="large-text">FIND</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row" >
-        <div class="col-md-12">
-          <h1 class="page-title">AD SERVICE</h1>
-        </div>
-      </div>
-      
-      {% for i in items %}
-        <div class="row">
-            <div class="col-md-4">
-                <a href="{{ url_for('product', product_id=1) }}" target="_blank">
-                    <img src="../static/android-chrome-512x512.png" class="img-responsive" alt="gofind logo">
-                </a>
+<link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../static/assets/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../static/assets/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="../static/assets/favicons/manifest.json">
+<link rel="mask-icon" href="../static/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../static/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="../static/style.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="../static/custom.css" type="text/css"/>
+
+	<link rel="stylesheet" href="../static/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- Document Title
+	============================================= -->
+	<title>GOFind.ai</title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="transparent-header dark full-header" data-sticky-class="not-dark">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="{{ url_for('index') }}" class="standard-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png"><img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
+						<a href="{{ url_for('index') }}" class="retina-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png">
+						<img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
+					</div><!-- #logo end -->
+					<a href="#" class="button button-3d button-large button-rounded button-red header-download-button">DOWNLOAD NOW</a>
+                </div>
             </div>
-            <div class="col-md-4">
-                <a href="{{ url_for('product', product_id=1) }}">
-                    <img src="../static/android-chrome-512x512.png" class="img-responsive" alt="gofind logo">
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ url_for('product', product_id=1) }}">
-                    <img src="../static/android-chrome-512x512.png" class="img-responsive" alt="gofind logo">
-                </a>
-            </div>
-        </div>
-      {% endfor %}
-      
-      
+        </header>
+        <section id="slider" class="slider-parallax" style="background: url('../static/assets/img/gf13.png') no-repeat; background-size: cover" data-height-lg="600" data-height-md="500" data-height-sm="400" data-height-xs="300" data-height-xxs="250">
+			<div class="slider-parallax-inner">
+
+				<div class="container clearfix">
+					<div class="vertical-middle dark center">
+
+						<div class="heading-block nobottommargin center">
+							<h1>
+								
+									Get ready for the ultimate shopping search engine.  
+								
+							</h1>
+							
+							<a href="#" data-scrollto="#content" data-offset="100" class="dark one-page-arrow"><i class="icon-angle-down infinite animated fadeInDown"></i></a>
+							
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</section>
+				<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+					<div class="row clearfix">
+
+						<div class="col-lg-5">
+							<div class="heading-block topmargin">
+								<h2>GOFind lets you buy what you see!</h2>
+							</div>
+							<p class="lead">You snap or upload a photo and our search engine finds the item and show you where to buy it online!</p>
+						</div>
+
+						<div class="col-lg-7">
+
+							<div style="position: relative; margin-bottom: -60px;" class="ohidden" data-height-lg="426" data-height-md="567" data-height-sm="470" data-height-xs="287" data-height-xxs="183">
+								<img src="../static/assets/img/intro-image.png" style="position: absolute; top: 0; left: 0;" data-animate="fadeInUp" data-delay="100" alt="GOFind-APP">
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+   
     </div>
-  </body>
+    <div class="section parallax nomargin notopborder" style="background: url('../static/assets/img/index-section.png') center center; padding: 0px 0;" data-stellar-background-ratio="0.3">
+					<div class="container-fluid center clearfix">
+
+						<div class="heading-block">
+							<h2>So, how it works?</h2>
+							<div class="clear"></div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-md-6 text-center how-it-works-step">
+                   <br> <br>
+                   <h2>Use the app to <strong>SNAP</strong> a photo!</h2>                 
+               </div> 
+               
+               <div class="col-md-6 text-center">
+                   <img class="steps-photo" src="../static/assets/img/standing-screen.png">
+               </div>
+               
+               
+               <div class="col-md-6 text-center">
+                   <img class="steps-photo" src="../static/assets/img/standing-screen-2.png">
+               </div>
+               <div class="col-md-6 text-center how-it-works-step">
+                   <br> <br>
+                   <h2>AI Vision Engine will <strong>ANALYZE</strong> it!</h2>
+                   <p>Gofind AI Vision Engine analyses patterns, structures, <br> styles, colors and other details.</p>
+                   
+               </div>
+               <div class="col_half text-center how-it-works-step-3">
+                   <br> <br>
+                   <h2>Get the <strong>SAME/SIMILAR/COMPLEMENTARY</strong><br> items shopping results!</h2> 
+                   <p>GOFind AI E-commerce Search Engine finds the <br> same, similar or complementary items from trusted online shops, <br> getting the ultimate shopping search experience.</p>                
+               </div> 
+               <div class="col_half col_last text-center">
+               <img class="steps-photo-3" src="../static/assets/img/multiples-brands-indes.png">
+						
+					</div>
+        
+    
+    <div class="col_two_third col_last nobottommargin freetrial">
+
+
+						<h3>Get Early Access for fashion search app!</h3>
+
+
+						<form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+
+							<div class="col_half">
+								<label for="register-form-name">Name:</label>
+								<input type="text" placeholder="Enter your name" id="register-form-name" name="register-form-name" value="" class="form-control" />
+								<br>
+
+								<label for="register-form-email">Email Address:</label>
+								<input type="text" placeholder="Enter your email address" id="register-form-email" name="register-form-email" value="" class="form-control" />
+								<br> <br>
+								<div class="col_full nobottommargin">
+								<button class="button button-3d button-black nomargin" id="register-form-submit" name="register-form-submit" value="register">GET THE APP</button>
+							</div>
+							</div>
+							
+						<div class="col_half col_last text-center">
+						    <img class="motiongraphic" src="../static/assets/img/58252546f5fed05212665b66_mobile_ezgif.com-resize%20(1).gif">
+						</div>
+							
+
+							<div class="clear"></div>
+
+							
+
+						</form>
+						</div>
+
+					</div>
+
+
+			
+    </section> <!--content end-->
+        
+               
+               
+     <!-- Footer
+		============================================= -->
+		<footer id="footer">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix copyrights-text">
+
+					<div class="col_half">
+						<img src="../static/assets/img/MAIN%20LOGO.png" alt="Footer Logo" class="footer-logo">
+
+						Copyright &copy; 2016 All Rights Reserved by GOFind.ai.
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="copyrights-menu copyright-links fright clearfix">
+							<a href="{{ url_for('influencer') }}">Influencer</a>/<a href="{{ url_for('advertiser') }}">Advertiser</a>/<a href="#">Investor</a>
+				
+						</div>
+				
+					<!--	<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-vimeo">
+								<i class="icon-vimeo"></i>
+								<i class="icon-vimeo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-yahoo">
+								<i class="icon-yahoo"></i>
+								<i class="icon-yahoo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div> -->
+					
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->          
+              
+    <!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="../static/js/jquery.js"></script>
+	<script type="text/javascript" src="../static/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="../static/js/functions.js"></script>
+
+	<script>
+	$(function() {
+		$( "#side-navigation" ).tabs({ show: { effect: "fade", duration: 400 } });
+	});
+</script>
+   
+    </body>
 </html>
-
-
+				
