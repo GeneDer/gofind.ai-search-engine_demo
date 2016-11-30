@@ -25,7 +25,14 @@ class Results(Base):
     seller_url = Column(String(2000), nullable=False)
     seller_name = Column(String(200), nullable=False)
     item_name = Column(String(200), nullable=False)
-    price = Column(Numeric(12, 2), nullable=False)
+    price = Column(String(200), nullable=False)
+
+class Early_access(Base):
+    __tablename__ = 'early_access'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(2000), nullable=False)
+    email = Column(String(2000), nullable=False)
 
 engine = create_engine('sqlite:///search_engine_demo.db')
 

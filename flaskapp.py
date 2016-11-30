@@ -22,8 +22,13 @@ def get_db():
         db = g.db = connect_to_database()
     return db
 
-@app.route('/')
+@app.route('/', methods=['post', 'get'])
 def index():
+    rows = select_query("""SELECT count(*), MIN(id), MAX(id)
+                              FROM posts""",
+                           [])
+    print rows
+    # TODO: submit the post request and save the name and email to the database
     return render_template("index.html")
 
 @app.route('/advertiser')
@@ -50,7 +55,7 @@ def page(page_number):
                              [min_idx, max_idx])
 
         #TODO: test out posts after database created
-        print posts, sidojfds
+        #print posts, sidojfds
 
         #TODO: modify the html after its created
         return render_template("page.html", posts=posts,
