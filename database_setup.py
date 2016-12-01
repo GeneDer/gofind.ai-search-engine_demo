@@ -16,11 +16,18 @@ class Posts(Base):
     tags = Column(String(2000), nullable=False)
     image_name = Column(String(200), nullable=False)
 
+class Segmented(Base):
+    __tablename__ = 'segmented'
+
+    id = Column(Integer, primary_key=True)
+    segmented_image_url = Column(String(2000), nullable=False)
+    post_id = Column(Integer, nullable=False)
+
 class Results(Base):
     __tablename__ = 'results'
 
     id = Column(Integer, primary_key=True)
-    post_id = Column(Integer, nullable=False)
+    segmented_id = Column(Integer, nullable=False)
     image_url = Column(String(2000), nullable=False)
     seller_url = Column(String(2000), nullable=False)
     seller_name = Column(String(200), nullable=False)
