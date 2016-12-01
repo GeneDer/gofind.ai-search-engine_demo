@@ -50,8 +50,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="index.html" class="standard-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png"><img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
-						<a href="index.html" class="retina-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png">
+						<a href="{{ url_for('index') }}" class="standard-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png"><img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
+						<a href="{{ url_for('index') }}" class="retina-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png">
 						<img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
 					</div><!-- #logo end -->
 
@@ -63,66 +63,58 @@
     <section id="app-header">
                 <div id="wrapper" class="clearfix">
                 <div class="col_two_fifth text-left">
-                <a href="#">
-                    <img class="main-demo" src="../static/assets/img/carasol-1/cara1-1.png" alt="Main image demo">
+                <a href="{{ source_url }}" target="_blank">
+                    <img class="main-demo" src="{{ main_image_url }}" alt="Main image demo">
                     </a>
                     <p id="p-main-demo" class="main-demo">
                     
-                       Check out my ootd!<br> <strong>#gofindfashion</strong> #kerrywoodson #ootd</p>
+                    {{ image_name }}<br> <strong>{{ tags }}</strong></p>
                 
                     </div>
                     
                     <div class="col_three_fifth col_last text-left">
-                        <div id="box" class="circle">
-                            <img src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" class="img-circle" alt="Cinque Terre" width="100" height="96">
+                        {% if (segmented_images|length) > 2 %}
+                            <div id="box" class="circle">
+                                <img src="{{ segmented_images[2][1] }}" class="img-circle" alt="Cinque Terre" width="100" height="96">
                             </div>
-                                            
-                    <div id="box" class="circle-1">
-                            <p class="item-categories">Tops</p></div>
+                        {% endif %}
+                        
+                        {% if (segmented_images|length) > 1 %}
+                            <div id="box" class="circle-1">
+                                <img src="{{ segmented_images[1][1] }}" class="img-circle" alt="Cinque Terre" width="100" height="96">
+                            </div>
+                        {% endif %}
+                        
+                        {% if (segmented_images|length) > 0 %}
                             <div id="box" class="circle-2">
-                            <p class="item-categories">Tops</p></div>
-                            
+                                <img src="{{ segmented_images[0][1] }}" class="img-circle" alt="Cinque Terre" width="100" height="96">
+                            </div>
+                        {% endif %}
                         
                     </div>
-                
-                    <div class="col_three_fifth col_last text-right">
-                        <a href="#" class="price-tags">
-                            <img class="thumbnail-2" src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" alt="thumbnail-1">
-                            </a>
-                                            
-                    <a href="#">
-                            <img class="thumbnail-2" src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" alt="thumbnail-1">
-                            </a>
-                   <a href="#">
-                            <img class="thumbnail-2" src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" alt="thumbnail-1"></a>
+                    {% if (segmented_images|length) > 0 %}
+                        {% for i in range(results[0]|length) %}
+                            <div class="col_three_fifth col_last text-right">
+                                {% for j in range(segmented_images|length) %}
+                                    <a href="{{ results[j][i][3] }}" class="price-tags" target="_blank">
+                                        <img class="thumbnail-2" src="{{ results[j][i][2] }}" alt="thumbnail-1">
+                                    </a>
+                                {% endfor %}
+                            </div>
                             
-                        
-                    </div>
-                    <div class="col_three_fifth col_last notopmargin text-right">
-                        <a href="#"><p class="thumbnail-1">Gucci<br>$60</p></a>
-                        <a href="#"><p class="thumbnail-1">Gucci<br>$60</p></a>
-                        <a href="#"><p class="thumbnail-1">Gucci<br>$60</p></a>
-                    </div>
-                    <div class="col_three_fifth col_last text-right">
-                        <a href="#" class="price-tags">
-                            <img class="thumbnail-2" src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" alt="thumbnail-1">
-                            </a>
-                                            
-                    <a href="#">
-                            <img class="thumbnail-2" src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" alt="thumbnail-1">
-                            </a>
-                   <a href="#">
-                            <img class="thumbnail-2" src="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1463502621/434158_X5C33_1957_001_100_0000_Light-Striped-merino-cashmere-knit-top.jpg" alt="thumbnail-1"></a>
-                            
-                        
-                    </div>
-                    <div class="col_three_fifth col_last notopmargin text-right">
-                        <a href="#"><p class="thumbnail-1">Gucci<br>$60</p></a>
-                        <a href="#"><p class="thumbnail-1">Gucci<br>$60</p></a>
-                        <a href="#"><p class="thumbnail-1">Gucci<br>$60</p></a>
-                    </div>
-                    
-            
+                            <div class="col_three_fifth col_last text-right">
+                                {% for j in range(segmented_images|length) %}
+                                    <a>
+                                        <p class="thumbnail-1">
+                                            {{ results[j][i][5] }}
+                                            <br>
+                                            {{ results[j][i][6] }}
+                                        </p>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
         </div>
     </section>
     
@@ -175,7 +167,7 @@
 					</div>
          <div class="bottom">     
                <div class="col-md-12 text-center">
-                   <h2>For more details, visit <a href="www.gofind.ai/" class="link">www.gofind.ai/</a>
+                   <h2>For more details, visit <a href="http://www.gofind.ai/" class="link">www.gofind.ai/</a>
                    </h2>
                </div>        
 				
@@ -212,7 +204,7 @@
 
 					<div class="col_half col_last tright">
 						<div class="copyrights-menu copyright-links fright clearfix">
-							<a href="Influencer.html">Influencer</a>/<a href="#">Advertiser</a>/<a href="#">Invester</a>/<a href="www.gofind.ai/legal">Legal</a>
+							<a href="{{ url_for('influencer') }}">Influencer</a>/<a href="{{ url_for('advertiser') }}">Advertiser</a>/<a href="#">Invester</a>/<a href="http://www.gofind.ai/legal">Legal</a>
 				
 						</div>
 				
