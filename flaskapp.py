@@ -112,7 +112,9 @@ def post(post_id):
                 
 
         #create the template filled with data
-        return render_template("post.html", main_image_url=main_image_url,
+        return render_template("post.html", id1=post_id - 1,
+                               id2=post_id + 1,
+                               main_image_url=main_image_url,
                                source_url=source_url,
                                tags=tags,
                                image_name=image_name,

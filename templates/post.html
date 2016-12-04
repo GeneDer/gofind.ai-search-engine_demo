@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
-    
+
 <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="../static/assets/favicons/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="../static/assets/favicons/favicon-16x16.png" sizes="16x16">
@@ -11,9 +11,12 @@
 
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
+	<meta name="Description" CONTENT="Author: A.N. Author, Illustrator: P. Picture, Category: Books, Price:  £9.24, Length: 784 pages">
 
 	<!-- Stylesheets
 	============================================= -->
+	<link href="../static/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="../static/css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="../static/style-jocy.css" type="text/css" />
@@ -50,26 +53,34 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="{{ url_for('index') }}" class="standard-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png"><img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
-						<a href="{{ url_for('index') }}" class="retina-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO.png">
-						<img src="../static/assets/img/MAIN%20LOGO.png" alt="GOFind Logo"></a>
+						<a href="{{ url_for('index') }}" class="standard-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO2.png"><img src="../static/assets/img/MAIN%20LOGO2.png" alt="GOFind Logo"></a>
+						<a href="{{ url_for('index') }}" class="retina-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO2.png">
+						<img src="../static/assets/img/MAIN%20LOGO2.png" alt="GOFind Logo"></a>
 					</div><!-- #logo end -->
-
+					<div class="col-md-12 text-center">
+		                <a href="https://itunes.apple.com/us/app/gofind-fashion/id1120971095?mt=8&ign-mpt=uo%3D4"  target="_blank"><img class="social-appstore" src="../static/assets/img/apple-app-store-icon.png"></a>
+		                <a href="#"><img class="social-appstore" src="../static/assets/img/en_badge_web_generic.png"></a>
+		            </div>
             </div>
     </div>
         </header>
 
 
     <section id="app-header">
+        <a href="{{ url_for('post', post_id=id1) }}" id="btn-left" class="btn btn-danger btn-lg" title="Preview" onclick="arrowPreview();">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a href="{{ url_for('post', post_id=id2) }}" id="btn-right" class="btn btn-danger btn-lg" title="Next" onclick="arrowNext();">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
                 <div id="wrapper" class="clearfix">
                 <div class="col_two_fifth text-left">
                 <a href="{{ source_url }}" target="_blank">
                     <img class="main-demo" src="{{ main_image_url }}" alt="Main image demo">
-                    </a>
                     <p id="p-main-demo" class="main-demo">
-                    
+                    Image source: 
                     {{ image_name }}<br> <strong>{{ tags }}</strong></p>
-                
+                </a>
                     </div>
                     
                     <div class="col_three_fifth col_last text-left">
@@ -167,16 +178,9 @@
 					</div>
          <div class="bottom">     
                <div class="col-md-12 text-center">
-                   <h2>For more details, visit <a href="http://www.gofind.ai/" class="link">www.gofind.ai/</a>
+                   <h2>For more details, visit <a href="http://www.gofind.ai/" class="gradient-text">www.gofind.ai</a>
                    </h2>
                </div>        
-				
-            <div class="col-md-12 text-center">
-                <h3 class="gettheapp">Get the app on</h3>
-                <a href="#"><img class="social-appstore" src="../static/assets/img/apple-app-store-icon.png"></a>
-                <a href="#"><img class="social-appstore" src="../static/assets/img/en_badge_web_generic.png"></a>
-            <br> <br>
-            </div>
         </div> 
             
         
@@ -198,7 +202,7 @@
 
 					<div class="col_half">
 						<img src="../static/assets/img/MAIN%20LOGO.png" alt="Footer Logo" class="footer-logo">
-
+                        <p style="width:168%;margin-bottom:15px;">Gofind is a search engine for shopping. We find public data of products and people that inspires and improves the​ shopping experience. We try our best to link all content back to original sources​ ​shopping experience. We try our best to link all content back to original sources. For more info, please visit <a class="gradient-text" href="http://www.gofind.ai/legal" target="_blank">www.gofind.ai/legal</a></p>
 						Copyrights &copy; 2016 All Rights Reserved by GOFind.ai.
 					</div>
 
@@ -261,6 +265,8 @@
     
     <!-- External JavaScripts
 	============================================= -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../static/js/jquery.js"></script>
 	<script type="text/javascript" src="../static/js/plugins.js"></script>
 
@@ -268,7 +274,19 @@
 	============================================= -->
 	<script type="text/javascript" src="../static/js/functions.js"></script>
 
-	<script>
+	<script type="text/javascript">
+		// var url = window.location.toString();
+		var urlNum = document.URL.match(/\d+/g);
+		function arrowNext(){
+	         var suma = Number(urlNum)+1;
+	         location.href = "http://52.52.173.74/post/" + suma;
+	         return false;
+	    };
+	    function arrowPreview(){
+	         var resta = Number(urlNum)-1;
+	         location.href = "http://52.52.173.74/post/" + resta;
+	         return false;
+	    };
 	$(function() {
 		$( "#side-navigation" ).tabs({ show: { effect: "fade", duration: 400 } });
 	});
