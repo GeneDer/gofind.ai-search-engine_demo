@@ -23,13 +23,18 @@ def get_db():
         db = g.db = connect_to_database()
     return db
 
-@app.route('/', methods=['post', 'get'])
+@app.route('/', methods=['POST', 'GET'])
 def index():
     rows = select_query("""SELECT count(*), MIN(id), MAX(id)
                               FROM posts""",
                            [])
     print rows
     # TODO: submit the post request and save the name and email to the database
+    if request.method == 'POST':
+        name = request.form['register-form-name']
+        email = request.form['register-form-email']
+
+        print name, email
     return render_template("index.html")
 
 @app.route('/advertiser')

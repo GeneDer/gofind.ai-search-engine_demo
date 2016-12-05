@@ -3,8 +3,8 @@
 }
 
 .header-download-button {
-    float: right !important;
-    margin-top: 20px
+    margin-top: 25px;
+    float: right !important; 
 }
 
 #logo img {
@@ -16,7 +16,7 @@
 }
 
 h1 {
-    font-family: 'Lato-Light' !important;
+    font-family: 'Poppins' !important;
     font-size: 50px !important;
     line-height: 70px !important;
     font-weight: 500 !important;
@@ -31,33 +31,44 @@ h1 {
 
 .heading-block {
     position:relative;
-    margin-top: 80px !important;
 }
 
 .how-it-works-step {
     position:relative;
     margin-top:200px ;
+     
 }
 
 .how-it-works-step h2{
     font-family: 'Lato-Light' !important;
     font-weight: 300 !important;
-   
+   padding-left:20px !important;
 }
 
 .steps-photo {
     width:35%;
     height:auto;
     position:relative;
-    margin-top:80px !important;
+    padding-top:40px !important;
+    padding-bottom: 40px
     
+}
+
+.steps-photo-1 {
+    width: 70%;
+    height: auto;
+    position:relative;
+    padding-top: 40px !important; 
+    padding-bottom: 40px
 }
 
 .how-it-works-step-3 p,
 .how-it-works-step p {
-    font-size: 20px !important;
-    line-height: 29px !important;
+    font-size: 16px !important;
+    line-height: 25px !important;
     font-family: 'Lato-Light' !important;
+    padding-left: 20px !important; 
+    margin-top: -20px
 }
 
 
@@ -69,6 +80,7 @@ h1 {
 .how-it-works-step-3 h2 {
     font-family: 'Lato-Light' !important;
     font-weight: 300 !important;
+    padding-left: 20px 
 }
 
 .steps-photo-3 {
@@ -93,6 +105,12 @@ h1 {
     width: 50%;
     height: auto;
 }
+
+.sm-form-control {
+    font-family: 'Open Sans' !important; 
+    font-weight: 200 !important;
+}
+
 
 .form-control {
     height:50px !important; 
@@ -134,12 +152,21 @@ h1 {
 }
 
 .influencer h1 {
-    color:#333 !important;
-    font-family: 'Open Sans' !important; 
+    color:#ffffff !important;
+    font-family: 'Poppins' !important; 
     font-weight: 500;
     font-size: 40px !important;
     line-height: 50px !important; 
 }
+
+.influencer-1 h1 {
+    color:#333 !important;
+    font-family: 'Poppins' !important; 
+    font-weight: 500;
+    font-size: 40px !important;
+    line-height: 50px !important;
+}
+
 
 .vertical-middle {
     position: absolute; 
@@ -161,8 +188,15 @@ h1 {
 .influencer-heading-descriptions {
     font-family: 'Lato-Light' !important;
     font-size: 25px !important; 
-    color: #333 !important; 
+    color: #ffffff !important; 
     margin-top: 50px
+}
+
+.index-heading-descriptions {
+    font-family: 'Lato' !important; 
+    font-size: 25px;
+    color: #000;
+    font-weight: 400 !important; 
 }
 
 .bgcolor {
@@ -170,7 +204,6 @@ h1 {
 }
 
 #header .signup-button {
-    display: inline-block !important;
     float: right;
     margin-top: -85px
 }
@@ -226,11 +259,17 @@ h1 {
     
 }
 
-.social-appstore {
-    width: 20%; 
+.social-appstore { 
     height:auto; 
     position: relative;
-    margin-top: 5px; 
+    margin-top: 25px; 
+    display: inline-block;
+}
+
+.social-appstore-1 {
+    position: relative; 
+    margin-top: 25px; 
+    float: right
 }
 
 .gettheapp {
@@ -248,7 +287,7 @@ h1 {
 }
 
 .social-pic {
-    width: 70%;
+    width: 50%;
     height: auto;
     padding-top: 120px;
 }
@@ -267,10 +306,7 @@ h1 {
     font-size: 16px;
 }
 
-a {
-    text-decoration: none !important; 
-    color: #911D22 !important;
-}
+
 
 .demophone-section {
     width: 200% !important; 
@@ -310,38 +346,42 @@ background-attachment: fixed;
 }
 
 .main-demo {
-    width: 55% !important;
+    width: 30% !important;
     height: auto !important;
-    position: relative;
+    position: fixed;
     margin-top: 30px;
+    margin-left: 50px;
+    float: left;
     
 }
 
 .demo-2-description {
     font-family: 'Lato-Light' !important; 
-    font-size: 19px; 
-    line-height: 30px; 
-    margin-top: -100px; 
+    font-size: 30px; 
+    line-height: 50px; 
+    position: fixed;
+    margin-top:px; 
+    padding-left: 50px; 
+    
+    
 }
 
 .thumbnail {
     width:12%;
-    margin-top: 25px; 
+    -top: 80px; 
     display: inline-block; 
     margin-right:20px; 
 }
 
-.price-tags p {
-   color: white !important; 
-    background-color: black !important; 
-}
 
 .thumbnail-1 {
     position: relative;
-    margin-top:-130px; 
+    margin-top:0px; 
     display: inline-block;
     width:12%; 
-    margin-right:20px
+    margin-right:20px;
+    font-size: 20px;
+    
     
     
 }
@@ -350,5 +390,74 @@ background-attachment: fixed;
     width:12%;
     display: inline-block; 
     margin-right:20px; 
-    margin-top:-120px;
+    
+}
+
+#box {
+    width:100px;
+    height:100px;
+    border-radius: 500px; 
+    border: 2px solid #000000;
+    position:relative; 
+    -webkit-border-radius: 500px;
+    display:inline-block;
+}
+
+.item-categories {
+    padding-top: 35px;
+    padding-left: 30px;
+    font-size: 18px;
+    font-family: 'Open Sans' !important;
+    font-weight: 200;
+    display: inline-block;
+}
+
+.circle {
+position: relative;
+  right: 125px;
+}
+
+.circle-1 {
+    position:relative;
+    right:90px
+}
+
+.circle-2 {
+    position: relative;
+    right: 50px
+}
+
+.background-dec {
+    background-color: #3D3C3D !important; 
+}
+
+.text-color {
+    color: #E1D6E0 !important;
+}
+
+.android-version {
+    padding-top: 10px; 
+    font-family: 'Lato-Light' !important; 
+    font-size: 25px !important; 
+}
+
+.headervideo {
+    width:50%;
+    position:relative;
+    margin-top: 400px;
+    float: right
+    
+}
+
+.index-head {
+    float: right;
+    margin-top: 400px; 
+}
+
+.index-head h1 {
+    font-weight: 600 !important;
+}
+
+.ROI {
+    color: #333 !important;
 }
