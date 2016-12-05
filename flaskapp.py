@@ -163,6 +163,13 @@ def dynamic():
         pass
         #return render_template("dynamic.html")
 
+@app.route('/google9c8e70e78888c82b.html')
+def googleVerify():
+    return render_template("google9c8e70e78888c82b.html")
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return render_template("sitemap.xml")
 
 @app.teardown_appcontext
 def close_connection(exception):
