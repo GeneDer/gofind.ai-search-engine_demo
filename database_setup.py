@@ -34,12 +34,29 @@ class Results(Base):
     item_name = Column(String(200), nullable=False)
     price = Column(String(200), nullable=False)
 
-class Early_access(Base):
-    __tablename__ = 'early_access'
+class Stay_updated(Base):
+    __tablename__ = 'stay_updated'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(2000), nullable=False)
-    email = Column(String(2000), nullable=False)
+    name = Column(String(200), nullable=False)
+    email = Column(String(200), nullable=False)
+
+class Influencer(Base):
+    __tablename__ = 'influencer'
+
+    id = Column(Integer, primary_key=True)
+    tumblr_id = Column(String(200), nullable=False)
+    email = Column(String(200), nullable=False)
+
+class Advertiser(Base):
+    __tablename__ = 'advertiser'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(200), nullable=False)
+    company = Column(String(200), nullable=False)
+    email = Column(String(200), nullable=False)
+    phone = Column(String(20), nullable=False)
+    message = Column(String(2000), nullable=False)
 
 engine = create_engine('sqlite:///search_engine_demo.db')
 

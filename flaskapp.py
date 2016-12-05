@@ -26,23 +26,44 @@ def get_db():
 @app.route('/', methods=['POST', 'GET'])
 def index():
     rows = select_query("""SELECT count(*), MIN(id), MAX(id)
-                              FROM posts""",
+                              FROM influencer""",
                            [])
     print rows
-    # TODO: submit the post request and save the name and email to the database
+    # submit the post request and save the name and email to the database
     if request.method == 'POST':
         name = request.form['register-form-name']
         email = request.form['register-form-email']
 
-        print name, email
+        insert_query("""INSERT INTO stay_updated (name, email)
+                        VALUES (?, ?)""",
+                      [name, email])
     return render_template("index.html")
 
-@app.route('/advertiser')
+@app.route('/advertiser', methods=['POST', 'GET'])
 def advertiser():
+    if request.method == 'POST':
+        name = request.form['register-form-name']
+        company = request.form['register-form-company']
+        email = request.form['register-form-email']
+        phone = request.form['register-form-phone']
+        message = request.form['template-contactform-message']
+        
+        insert_query("""INSERT INTO advertiser
+                        (name, company, email, phone, message)
+                        VALUES (?, ?, ?, ?, ?)""",
+                      [name, company, email, phone, message])
+        
     return render_template("advertiser.html")
 
-@app.route('/influencer')
+@app.route('/influencer', methods=['POST', 'GET'])
 def influencer():
+    if request.method == 'POST':
+        tumblr_id = request.form['register-form-name']
+        email = request.form['register-form-email']
+
+        insert_query("""INSERT INTO influencer (tumblr_id, email)
+                        VALUES (?, ?)""",
+                      [tumblr_id, email])
     return render_template("influencer.html")
 
 @app.route('/page/<int:page_number>')
