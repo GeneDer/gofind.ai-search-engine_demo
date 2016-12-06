@@ -108,6 +108,7 @@ def post(post_id):
         main_image_url = post[0][1]
         source_url = post[0][2]
         tags = post[0][3]
+        tags2 = tags.replace('#',",")
         image_name = post[0][4]
 
         #query the segmented_images based on the post_id
@@ -121,6 +122,7 @@ def post(post_id):
             segmented_images = segmented_images[:3]
 
         #query results based on each segmented_images
+        description = []
         results = []
         min_results_length = 10
         for i in segmented_images:
@@ -131,11 +133,22 @@ def post(post_id):
             results.append(tmp)
             if len(tmp) < min_results_length:
                 min_results_length = len(tmp)
+            for j in tmp:
+                description.append('%s at %s'%(j[5], j[6]))
 
         #limit the length of results to be the min_results_length
         for i in xrange(len(segmented_images)):
             results[i] = results[i][:min_results_length]
-                
+
+        #process the description
+        if len(description) != 0:
+            description = "Shop for " + ", ".join(description) + '.'
+
+        #process tags2
+        if len(tags2) > 1:
+            tags2 = " - Shopping for " + tags2
+        else:
+            tags2 = ''
 
         #create the template filled with data
         return render_template("post.html", id1=post_id - 1,
@@ -145,7 +158,9 @@ def post(post_id):
                                tags=tags,
                                image_name=image_name,
                                segmented_images=segmented_images,
-                               results=results)
+                               results=results,
+                               description=description,
+                               tags2=tags2)
     elif post_id < 1:
         return redirect(url_for('post', post_id=1))
     else:
