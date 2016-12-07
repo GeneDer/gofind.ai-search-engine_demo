@@ -58,6 +58,14 @@ class Advertiser(Base):
     phone = Column(String(20), nullable=False)
     message = Column(String(2000), nullable=False)
 
+class Feedback(Base):
+    __tablename__ = 'feedback'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(200), nullable=False)
+    email = Column(String(200), nullable=False)
+    message = Column(String(2000), nullable=False)
+
 engine = create_engine('sqlite:///search_engine_demo.db')
 
 

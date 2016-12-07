@@ -26,7 +26,7 @@ def get_db():
 @app.route('/', methods=['POST', 'GET'])
 def index():
     rows = select_query("""SELECT count(*), MIN(id), MAX(id)
-                              FROM influencer""",
+                              FROM feedback""",
                            [])
     print rows
     # submit the post request and save the name and email to the database
@@ -166,17 +166,23 @@ def post(post_id):
     else:
         return redirect(url_for('post', post_id=MAX_POST))
     
+@app.route('/legal')
+def legal():
+    return render_template("legal.html")
 
-@app.route('/dynamic', methods=['GET', 'POST'])
-def dynamic():
-    return redirect(url_for('index'))
+@app.route('/feedback', methods=['POST', 'GET'])
+def feedback():
     if request.method == 'POST':
-        #TODO: send request to search engine api and display result
-        pass
-    else:
-        #TODO: display empty layout with a field asking for an image URL
-        pass
-        #return render_template("dynamic.html")
+        name = request.form['template-contactform-name']
+        email = request.form['template-contactform-email']
+        message = request.form['template-contactform-message']
+        
+        insert_query("""INSERT INTO feedback
+                        (name, email, message)
+                        VALUES (?, ?, ?)""",
+                      [name, email, message])
+        
+    return render_template("feedback.html")
 
 @app.route('/google9c8e70e78888c82b.html')
 def googleVerify():

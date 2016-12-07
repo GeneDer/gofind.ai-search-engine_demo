@@ -461,3 +461,7 @@ position: relative;
 .ROI {
     color: #333 !important;
 }
+
+.legal h2,h3,p {
+    font-family: 'Open Sans' !important;
+}
