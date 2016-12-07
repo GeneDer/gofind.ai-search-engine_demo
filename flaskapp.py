@@ -2,15 +2,16 @@ from collections import Counter
 import sqlite3
 import time
 import os
+import base64
+import requests
+from requests import Request, Session
+import json
 
 from flask import Flask, request, g, render_template, redirect, url_for, jsonify, abort
 from flask import session as login_session
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-
-MAX_POST = 6889
-MAX_PAGE = (MAX_POST - 1)/9 + 1
 
 
 def connect_to_database():
@@ -65,36 +66,13 @@ def influencer():
                         VALUES (?, ?)""",
                       [tumblr_id, email])
     return render_template("influencer.html")
-
-@app.route('/page/<int:page_number>')
-def page(page_number):
-    return redirect(url_for('index'))
-    if page_number >= 1 and page_number <= MAX_PAGE:
-        min_idx = 9*(page_number-1) + 1
-        max_idx = 9*(page_number)
-        pervious_page = (page_number - 1) if page_number != 1 else 1
-        next_page = (page_number + 1) if page_number != MAX_PAGE else MAX_PAGE
-
-        #query the posts based on the page_number
-        posts = select_query("""SELECT * 
-                                FROM posts
-                                WHERE id >= ?
-                                AND id <= ?""",
-                             [min_idx, max_idx])
-
-        #TODO: test out posts after database created
-        #print posts, sidojfds
-
-        #TODO: modify the html after its created
-        return render_template("page.html", posts=posts,
-                               pervious_page=pervious_page,
-                               next_page=next_page)
-    else:
-        return redirect(url_for('page', page_number=1))
-
     
 @app.route('/post/<int:post_id>')
 def post(post_id):
+    MAX_POST = select_query("""SELECT MAX(id)
+                           FROM posts""",
+                           [])[0][0]
+    print MAX_POST
     if post_id >= 1 and post_id <= MAX_POST:
         back_to_page = (post_id - 1)/9 + 1
         pervious_post = (post_id - 1) if post_id != 1 else 1
@@ -183,6 +161,150 @@ def feedback():
                       [name, email, message])
         
     return render_template("feedback.html")
+
+@app.route('/api/tfsearch', methods=['POST'])
+def api_tfsearch():
+    
+    if request.method == 'POST':
+        image = ''
+        if "segmented_image" in request.form:
+            image = request.form['segmented_image']
+        elif "main_image" in request.form:
+            image = request.form['main_image']
+
+        if image:
+            response = requests.get(image)
+            api_input = {"img64":base64.b64encode(response.content)}
+            s = Session()
+            req = Request('POST', "http://www.gofindapi.com:3000/searchapi",
+                          data=json.dumps(api_input), headers={'Content-Type':"application/json"})
+            prepped = req.prepare()
+            resp = s.send(prepped)
+            
+            return resp.content
+
+        else:
+            return 'Error: no main_image and/or segmented_image!'
+
+@app.route('/tfsearch', methods=['POST', 'GET'])
+def tfsearch():
+    if request.method == 'POST':
+        image = ''
+        segmented_image = ''
+        main_image = ''
+        if "segmented_image" in request.form:
+            image = request.form['segmented_image']
+        elif "main_image" in request.form:
+            image = request.form['main_image']
+
+        main_image = request.form['main_image']
+        segmented_image = request.form['segmented_image']
+
+        
+        if image:
+            response = requests.get(image)
+            api_input = {"img64":base64.b64encode(response.content)}
+            s = Session()
+            req = Request('POST', "http://www.gofindapi.com:3000/searchapi",
+                          data=json.dumps(api_input),
+                          headers={'Content-Type':"application/json"})
+            prepped = req.prepare()
+            resp = s.send(prepped)
+            
+            api_output = json.loads(resp.content)
+            if 'data' in api_output:
+                return render_template("tfsearch.html",
+                                       page_title="TF Search",
+                                       main_image_url=main_image,
+                                       segmented_image=segmented_image,
+                                       results=[api_output['data']])
+            else:
+                return render_template("tfsearch.html",
+                                       page_title="TF Search",
+                                       main_image_url=main_image,
+                                       segmented_image=segmented_image,
+                                       results=[])
+
+        else:
+            return 'Error: no main_image and/or segmented_image!'
+    else:
+        return render_template("tfsearch.html",
+                               page_title="TF Search",
+                               results=[])
+        
+@app.route('/post_search', methods=['POST', 'GET'])
+def post_search():
+    if request.method == 'POST':
+        image = ''
+        segmented_image = ''
+        main_image = ''
+        if "segmented_image" in request.form:
+            image = request.form['segmented_image']
+        elif "main_image" in request.form:
+            image = request.form['main_image']
+
+        main_image = request.form['main_image']
+        segmented_image = request.form['segmented_image']
+
+        
+        if image:
+            response = requests.get(image)
+            api_input = {"img64":base64.b64encode(response.content)}
+            s = Session()
+            req = Request('POST', "http://www.gofindapi.com:3000/searchapi",
+                          data=json.dumps(api_input), headers={'Content-Type':"application/json"})
+            prepped = req.prepare()
+            resp = s.send(prepped)
+            
+            api_output = json.loads(resp.content)
+            if 'data' in api_output:
+                #insert into database
+                post_id = select_query("""SELECT MAX(id)
+                           FROM posts""",
+                           [])[0][0] + 1
+                insert_query("""INSERT INTO posts
+                                (id, main_image_url, source_url,
+                                tags, image_name)
+                                VALUES (?, ?, ?, ?, ?)""",
+                             [post_id, main_image, main_image,
+                              " ", " "])
+                segm_id = select_query("""SELECT MAX(id)
+                           FROM segmented""",
+                           [])[0][0] + 1
+                insert_query("""INSERT INTO segmented
+                                (id, segmented_image_url, post_id)
+                                VALUES (?, ?, ?)""",
+                             [segm_id, segmented_image, post_id])
+                for result in api_output['data']:
+                    image_url = result['reference_image_links'][0]
+                    seller_url = result['url']
+                    seller_name = result['seller']
+                    item_name = result['itemName']
+                    if type(result['price']) == list:
+                        price = result['price'][0]
+                    else:
+                        price = result['price']
+
+                    insert_query("""INSERT INTO results
+                                   (segmented_id, image_url, seller_url,
+                                   seller_name, item_name, price)
+                                   VALUES (?, ?, ?, ?, ?, ?)""",
+                                [segm_id, image_url, seller_url,
+                                 seller_name, item_name, price])
+                
+                return redirect(url_for('post', post_id=post_id))
+            else:
+                return render_template("tfsearch.html",
+                                       main_image_url=main_image,
+                                       segmented_image=segmented_image,
+                                       results=[])
+
+        else:
+            return 'Error: no main_image and/or segmented_image!'
+    else:
+        return render_template("tfsearch.html",
+                               page_title="Post Search Result",
+                               results=[])    
 
 @app.route('/google9c8e70e78888c82b.html')
 def googleVerify():
