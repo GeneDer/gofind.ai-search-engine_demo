@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+<link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="../static/assets/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../static/assets/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="../static/assets/favicons/manifest.json">
+<link rel="mask-icon" href="../static/assets/favicons/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+	<meta name="Description" CONTENT="Author: A.N. Author, Illustrator: P. Picture, Category: Books, Price:  £9.24, Length: 784 pages">
+
+	<!-- Stylesheets
+	============================================= -->
+	<link href="../static/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="../static/css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="../static/style-jocy.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/dark.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/font-icons.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/animate.css" type="text/css" />
+	<link rel="stylesheet" href="../static/css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="../static/custom-jocy.css" type="text/css"/>
+
+	<link rel="stylesheet" href="../static/css/responsive.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- Document Title
+	============================================= -->
+	<title>GOFind.ai - Demo 2</title>
+
+</head>
+
+
+<body class="stretched">
+
+
+<header id="header" class="transparent-header dark full-header" data-sticky-class="not-dark">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="{{ url_for('index') }}" class="standard-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO2.png"><img src="../static/assets/img/MAIN%20LOGO2.png" alt="GOFind Logo"></a>
+						<a href="{{ url_for('index') }}" class="retina-logo" data-dark-logo="../static/assets/img/MAIN%20LOGO2.png">
+						<img src="../static/assets/img/MAIN%20LOGO2.png" alt="GOFind Logo"></a>
+					</div><!-- #logo end -->
+					<div class="col-md-12 text-center">
+		                <a href="#"><img class="social-appstore" src="../static/assets/img/apple-app-store-icon.png"></a>
+		                <a href="#"><img class="social-appstore" src="../static/assets/img/en_badge_web_generic.png"></a>
+		            </div>
+            </div>
+    </div>
+        </header>
+
+
+    <section id="app-header">
+        <a href="#" id="btn-left" class="btn btn-danger btn-lg" title="Preview" onclick="arrowPreview();">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a href="#" id="btn-right" class="btn btn-danger btn-lg" title="Next" onclick="arrowNext();">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+                <div id="wrapper" class="clearfix">
+                <div class="col_two_fifth text-left">
+                <a href="{{ source_url }}" target="_blank">
+                    <img class="main-demo" src="{{ main_image_url }}" alt="Main image demo">
+                    <p id="p-main-demo" class="main-demo">
+                    Image source: 
+                    {{ image_name }}<br> <strong>{{ tags }}</strong></p>
+                </a>
+                    </div>
+                    <table>
+                    	<tr>
+                    <div class="col_three_fifth col_last text-left">
+                        {% if (segmented_images|length) > 2 %}
+                            <th><div id="box" class="circle">
+                                <img src="{{ segmented_images[2][1] }}" class="img-circle" alt="Cinque Terre" width="100" height="96">
+                            </div></th>
+                        {% endif %}
+                        
+                        {% if (segmented_images|length) > 1 %}
+                            <th><div id="box" class="circle-1">
+                                <img src="{{ segmented_images[1][1] }}" class="img-circle" alt="Cinque Terre" width="100" height="96">
+                            </div></th>
+                        {% endif %}
+                        
+                        {% if (segmented_images|length) > 0 %}
+                            <th><div id="box" class="circle-2">
+                                <img src="{{ segmented_images[0][1] }}" class="img-circle" alt="Cinque Terre" width="100" height="96">
+                            </div></th>
+                        {% endif %}
+                        
+                    </div>
+                    </tr>
+                    {% if (segmented_images|length) > 0 %}
+                        {% for i in range(results[0]|length) %}
+                        <tr>
+                            <th><div class="col_three_fifth col_last text-right">
+                                {% for j in range(segmented_images|length) %}
+                                    <a href="{{ results[j][i][3] }}" class="price-tags" target="_blank">
+                                        <img class="thumbnail-2" src="{{ results[j][i][2] }}" alt="thumbnail-1">
+                                    </a>
+                                </div></th>
+                        </tr> 
+                                {% endfor %}
+                        <tr>   
+                            <th></th><div class="col_three_fifth col_last text-right">
+                                {% for j in range(segmented_images|length) %}
+                                    <a>
+                                        <p class="thumbnail-1">
+                                            {{ results[j][i][5] }}
+                                            <br>
+                                            {{ results[j][i][6] }}
+                                        </p>
+                                    </a>
+                                {% endfor %}
+                            </div></th>
+                        </tr>
+                    </table>
+                        {% endfor %}
+                    {% endif %}
+        </div>
+    </section>
+    
+    <section id="content">
+                                            
+            
+                                                
+                        <div class="col_full clearfix">
+
+						<div class="col-md-12 text-right how-it-works-step">
+                            <h3 class="intro-description"> GOFind is a <strong>Shopping Search Engine</strong><br> that searches for products and<br> shopping inspiration on the internet.</h3>
+						</div>
+                    <div class="col-md-12 text-right">
+					<img src="../static/assets/img/gf5.png" class="notopmargin social-pic" alt="Image" title="Image" />
+                            </div>
+
+					</div>
+                        
+                        <div class="col_full clearfix">
+                        <div class="col-md-12 text-right how-it-works-step">
+							<h3 class="intro-description"> The <strong>Celebrities or Influencers</strong><br> featured or named have not recommended,<br> endorsed or approved any of the items shown here. </h3>
+						</div>
+                       
+                        <div class="col-md-12 text-right">
+						
+                           <br><img src="../static/assets/img/fashion-bloggers.jpg" class="notopmargin social-pic" alt="Image" title="Image"/>
+                            </div>
+						
+						
+
+						
+					</div>
+					
+		          <div class="col_full clearfix">
+
+						<div class="col-md-12 text-right how-it-works-step">
+                            <h3 class="intro-description"> <strong>True</strong> to what you want.</h3>
+                        
+                            <ul class="intro-description-p">
+                                <li>We are <strong>NOT</strong> affiliated with any celebrities or influencers or brands portrayed on this site or mobile app. </li>
+                                <li>We do <strong>NOT</strong> sell products.</li>
+                                <li><strong>No</strong> endorsement is implied and we try to always link back to original content</li>
+                                </ul>
+                            
+						</div>
+                    <div class="col-md-12 text-right">
+					<img src="../static/assets/img/gf6.png" class="notopmargin social-pic" alt="Image" title="Image"  />
+                            </div>
+
+					</div>
+         <div class="bottom">     
+               <div class="col-md-12 text-center">
+                   <h2>For more details, visit <a href="http://www.gofind.ai/" class="gradient-text">www.gofind.ai</a>
+                   </h2>
+               </div>        
+        </div> 
+            
+        
+			
+    </section> <!--content end-->
+        
+               
+               
+     <!-- Footer
+		============================================= -->
+		<div class="bottom">
+		<footer id="footer">
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+
+				<div class="container clearfix copyrights-text">
+
+					<div class="col_half">
+						<img src="../static/assets/img/MAIN%20LOGO.png" alt="Footer Logo" class="footer-logo">
+                        <p style="width:168%;margin-bottom:15px;">Gofind is a search engine for shopping. We find public data of products and people that inspires and improves the​ shopping experience. We try our best to link all content back to original sources​ ​shopping experience. We try our best to link all content back to original sources. For more info, please visit <a class="gradient-text" href="www.gofind.ai/legal" target="_blank">www.gofind.ai/legal</a></p>
+						Copyrights &copy; 2016 All Rights Reserved by GOFind.ai.
+					</div>
+
+					<div class="col_half col_last tright">
+						<div class="copyrights-menu copyright-links fright clearfix">
+							<a href="{{ url_for('influencer') }}">Influencer</a>/<a href="{{ url_for('advertiser') }}">Advertiser</a>/<a href="#">Invester</a>/<a href="http://www.gofind.ai/legal">Legal</a>
+				
+						</div>
+				
+					<!--	<div class="fright clearfix">
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-twitter">
+								<i class="icon-twitter"></i>
+								<i class="icon-twitter"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-gplus">
+								<i class="icon-gplus"></i>
+								<i class="icon-gplus"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-pinterest">
+								<i class="icon-pinterest"></i>
+								<i class="icon-pinterest"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-vimeo">
+								<i class="icon-vimeo"></i>
+								<i class="icon-vimeo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-github">
+								<i class="icon-github"></i>
+								<i class="icon-github"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-yahoo">
+								<i class="icon-yahoo"></i>
+								<i class="icon-yahoo"></i>
+							</a>
+
+							<a href="#" class="social-icon si-small si-borderless nobottommargin si-linkedin">
+								<i class="icon-linkedin"></i>
+								<i class="icon-linkedin"></i>
+							</a>
+						</div> -->
+					
+					</div>
+
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->      
+		</div>    
+    
+    <!-- External JavaScripts
+	============================================= -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../static/js/jquery.js"></script>
+	<script type="text/javascript" src="../static/js/plugins.js"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="../static/js/functions.js"></script>
+
+	<script type="text/javascript">
+		// var url = window.location.toString();
+		var urlNum = document.URL.match(/\d+/g);
+		function arrowNext(){
+	         var suma = Number(urlNum)+1;
+	         location.href = "http://52.52.173.74/post/" + suma;
+	         return false;
+	    };
+	    function arrowPreview(){
+	         var resta = Number(urlNum)-1;
+	         location.href = "http://52.52.173.74/post/" + resta;
+	         return false;
+	    };
+	$(function() {
+		$( "#side-navigation" ).tabs({ show: { effect: "fade", duration: 400 } });
+	});
+</script>
+    </body>
+</html>

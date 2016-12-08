@@ -141,6 +141,9 @@ h1 {
 #btn-left{
     left: 5px;
 }
+#btn-right,#btn-left{
+    position: fixed;
+}
 /*social media share buttons*/
 /*end social media share buttons*/
 .header-menu {
