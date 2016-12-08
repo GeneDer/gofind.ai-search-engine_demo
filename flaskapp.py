@@ -262,56 +262,15 @@ def api_tfsearch():
 
         else:
             return 'Error: no main_image and/or segmented_image!'
-
-@app.route('/tfsearch', methods=['POST', 'GET'])
-def tfsearch():
-    if request.method == 'POST':
-        image = ''
-        segmented_image = ''
-        main_image = ''
-        if "segmented_image" in request.form:
-            image = request.form['segmented_image']
-        elif "main_image" in request.form:
-            image = request.form['main_image']
-
-        main_image = request.form['main_image']
-        segmented_image = request.form['segmented_image']
-
-        
-        if image:
-            response = requests.get(image)
-            api_input = {"img64":base64.b64encode(response.content)}
-            s = Session()
-            req = Request('POST', "http://www.gofindapi.com:3000/searchapi",
-                          data=json.dumps(api_input),
-                          headers={'Content-Type':"application/json"})
-            prepped = req.prepare()
-            resp = s.send(prepped)
-            
-            api_output = json.loads(resp.content)
-            if 'data' in api_output:
-                return render_template("tfsearch.html",
-                                       page_title="TF Search",
-                                       main_image_url=main_image,
-                                       segmented_image=segmented_image,
-                                       results=[api_output['data']])
-            else:
-                return render_template("tfsearch.html",
-                                       page_title="TF Search",
-                                       main_image_url=main_image,
-                                       segmented_image=segmented_image,
-                                       results=[])
-
-        else:
-            return 'Error: no main_image and/or segmented_image!'
-    else:
-        return render_template("tfsearch.html",
-                               page_title="TF Search",
-                               results=[])
         
 @app.route('/post_search', methods=['POST', 'GET'])
 def post_search():
     if request.method == 'POST':
+        if request.form['submit'] == 'Search':
+            print "hello Search"
+        if request.form['submit'] == 'Post':
+            print "hello Post"
+            
         image = ''
         segmented_image = ''
         main_image = ''
@@ -335,43 +294,50 @@ def post_search():
             
             api_output = json.loads(resp.content)
             if 'data' in api_output:
-                #insert into database
-                post_id = select_query("""SELECT MAX(id)
-                           FROM posts""",
-                           [])[0][0] + 1
-                insert_query("""INSERT INTO posts
-                                (id, main_image_url, source_url,
-                                tags, image_name)
-                                VALUES (?, ?, ?, ?, ?)""",
-                             [post_id, main_image, main_image,
-                              " ", " "])
-                segm_id = select_query("""SELECT MAX(id)
-                           FROM segmented""",
-                           [])[0][0] + 1
-                insert_query("""INSERT INTO segmented
-                                (id, segmented_image_url, post_id)
-                                VALUES (?, ?, ?)""",
-                             [segm_id, segmented_image, post_id])
-                for result in api_output['data']:
-                    image_url = result['reference_image_links'][0]
-                    seller_url = result['url']
-                    seller_name = result['seller']
-                    item_name = result['itemName']
-                    if type(result['price']) == list:
-                        price = result['price'][0]
-                    else:
-                        price = result['price']
+                if request.form['submit'] == 'Search':
+                    return render_template("post_search.html",
+                                       main_image_url=main_image,
+                                       segmented_image=segmented_image,
+                                       results=[api_output['data']])
+                    
+                else:
+                    #insert into database
+                    post_id = select_query("""SELECT MAX(id)
+                               FROM posts""",
+                               [])[0][0] + 1
+                    insert_query("""INSERT INTO posts
+                                    (id, main_image_url, source_url,
+                                    tags, image_name)
+                                    VALUES (?, ?, ?, ?, ?)""",
+                                 [post_id, main_image, main_image,
+                                  " ", " "])
+                    segm_id = select_query("""SELECT MAX(id)
+                               FROM segmented""",
+                               [])[0][0] + 1
+                    insert_query("""INSERT INTO segmented
+                                    (id, segmented_image_url, post_id)
+                                    VALUES (?, ?, ?)""",
+                                 [segm_id, segmented_image, post_id])
+                    for result in api_output['data']:
+                        image_url = result['reference_image_links'][0]
+                        seller_url = result['url']
+                        seller_name = result['seller']
+                        item_name = result['itemName']
+                        if type(result['price']) == list:
+                            price = result['price'][0]
+                        else:
+                            price = result['price']
 
-                    insert_query("""INSERT INTO results
-                                   (segmented_id, image_url, seller_url,
-                                   seller_name, item_name, price)
-                                   VALUES (?, ?, ?, ?, ?, ?)""",
-                                [segm_id, image_url, seller_url,
-                                 seller_name, item_name, price])
-                
-                return redirect(url_for('post', post_id=post_id))
+                        insert_query("""INSERT INTO results
+                                       (segmented_id, image_url, seller_url,
+                                       seller_name, item_name, price)
+                                       VALUES (?, ?, ?, ?, ?, ?)""",
+                                    [segm_id, image_url, seller_url,
+                                     seller_name, item_name, price])
+                    
+                    return redirect(url_for('post', post_id=post_id))
             else:
-                return render_template("tfsearch.html",
+                return render_template("post_search.html",
                                        main_image_url=main_image,
                                        segmented_image=segmented_image,
                                        results=[])
@@ -379,8 +345,7 @@ def post_search():
         else:
             return 'Error: no main_image and/or segmented_image!'
     else:
-        return render_template("tfsearch.html",
-                               page_title="Post Search Result",
+        return render_template("post_search.html",
                                results=[])    
 
 @app.route('/google9c8e70e78888c82b.html')
