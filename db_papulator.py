@@ -16,7 +16,8 @@ with open("FIN_JSON_celebrity.json", 'r') as f:
         source_url = post['look']['url']
         tags = " "
         image_name = post['look']['name'][0]
-
+        product_image_url = post['products'][0]['image']
+        
         cur.execute("""INSERT INTO posts
                        (id, main_image_url, source_url,
                        tags, image_name)
@@ -27,7 +28,7 @@ with open("FIN_JSON_celebrity.json", 'r') as f:
         cur.execute("""INSERT INTO segmented
                    (id, segmented_image_url, post_id)
                    VALUES (?, ?, ?)""",
-                [segm_count, main_image_url, post_count])
+                [segm_count, product_image_url, post_count])
         
         for result in post['search_result']:
             image_url = result['reference_image_links'][0]
@@ -49,7 +50,6 @@ with open("FIN_JSON_celebrity.json", 'r') as f:
 
         segm_count += 1
         post_count += 1
-
 
 with open("FIN_JSON_tumblr_celebrity.json", 'r') as f, \
      open("err_tumblr_celebrity.json", 'w') as o:
