@@ -252,7 +252,7 @@ var SEMICOLON = SEMICOLON || {};
 								element.css({ position: 'relative', top: '0', width: 'auto', marginTop: '0', paddingTop: '60px', paddingBottom: '60px' }).addClass('clearfix');
 							}
 						} else {
-							element.css({ position: 'absolute', top: '50%', width: '100%', paddingTop: '0', paddingBottom: '0', marginTop: -(verticalMiddleH/2)+'px' });
+							// element.css({ position: 'absolute', top: '50%', width: '100%', paddingTop: '0', paddingBottom: '0', marginTop: -(verticalMiddleH/2)+'px' });
 						}
 					} else {
 						element.css({ position: 'absolute', top: '50%', width: '100%', paddingTop: '0', paddingBottom: '0', marginTop: -(verticalMiddleH/2)+'px' });
@@ -1021,7 +1021,7 @@ var SEMICOLON = SEMICOLON || {};
 
 			if( !$body.hasClass('sticky-footer') && $footer.length > 0 && $wrapper.has('#footer') ) {
 				if( windowH > wrapperH ) {
-					// $footer.css({ 'margin-top': ( windowH - wrapperH ) });
+					$footer.css({ 'margin-top': ( windowH - wrapperH ) });
 				}
 			}
 		},

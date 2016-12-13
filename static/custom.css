@@ -264,6 +264,7 @@ h1 {
     position: relative;
     margin-top: 25px; 
     display: inline-block;
+    float: right;
 }
 
 .social-appstore-1 {
@@ -450,7 +451,8 @@ position: relative;
 }
 
 .index-head {
-    float: right;
+    /*float: right;*/
+    float: left;
     margin-top: 400px; 
 }
 
@@ -465,3 +467,5 @@ position: relative;
 .legal h2,h3,p {
     font-family: 'Open Sans' !important;
 }
+
+

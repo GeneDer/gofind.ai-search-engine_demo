@@ -1012,7 +1012,7 @@ body.stretched #header.full-header .container {
 #header.full-header #logo {
 	padding-right: 30px;
 	margin-right: 30px;
-	border-right: 1px solid #EEE;
+	/*border-right: 1px solid #EEE;*/
 }
 
 #header.transparent-header.full-header #logo { border-right-color: rgba(0,0,0,0.1); }
@@ -11915,7 +11915,7 @@ button.toast-close-button {
 	border-bottom: 1px solid #666;
 }
 
-.copyrights-menu { margin-bottom: 10px; }
+.copyrights-menu { margin-bottom: 10px;}
 
 .copyrights-menu a {
 	font-size: 14px;

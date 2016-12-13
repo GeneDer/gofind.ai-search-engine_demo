@@ -24,6 +24,12 @@
 
 
 @media (min-width: 992px) and (max-width: 1199px) {
+	.social-appstore-1 {
+	    margin-top: -75px;
+	}
+	.social-appstore {
+	    margin-top: -27px;
+	}
 
 	#wrapper { width: 1000px; }
 
@@ -305,8 +311,11 @@
 
 	#header.dark.transparent-header,
 	#header.dark.semi-transparent {
-		background-color: #333;
+		background-color: rgba(177, 98, 101, 0.23);
 		border-bottom: 1px solid rgba(0,0,0,0.1);
+		position: absolute;
+	    width: 100%;
+	    z-index: 1;
 	}
 
 	#header.transparent-header.floating-header { margin-top: 0; }
@@ -336,7 +345,8 @@
 
 	#logo {
 		display: block;
-		height: 100px;
+		/*height: 100px;*/
+		height: auto;
 		float: none;
 		margin: 0 auto 0 !important;
 		max-width: none;
@@ -344,8 +354,24 @@
 		border: 0 !important;
 		padding: 0 !important;
 	}
-
+	#logo img{
+		max-width: 50% !important;
+	    width: 50% !important;
+	}
+	.copyrights-menu{margin-left: -6px;}
+	.social-appstore-1{width: 35%;margin-top: -60px;}
+	.social-appstore{width: 35%;margin-top: -20px;}
 	#logo a.standard-logo { display: inline-block; }
+	.index-head{margin-top: 0px !important;}
+	.heading-block h1{font-size: 35px !important;line-height: 35px !important}
+	.index-heading-descriptions{font-size: 20px;margin-bottom: -25px;}
+	.headervideo{width: 80%;margin-top: -40px;margin-right: 10%;}
+	#cabecera{width: 360px !important;}
+	#slider{background-position: 20% 0%!important;}
+	.how-it-works-step{margin-top: 50px;width: 50%;float: left;}
+	.steps-photo{width: 75%;right: 10px;}
+	#steps-photo-div{width: 50%;float: right;}
+	#steps-photo-2-div{width: 50%;float:left;}
 
 	#primary-menu {
 		display: block;
@@ -381,6 +407,7 @@
 	#primary-menu > div > ul { margin-top: 60px !important; }
 
 	body:not(.top-search-open) #primary-menu-trigger {
+		display: none;
 		opacity: 1;
 		-webkit-transition: opacity .2s .2s ease, top .4s ease;
 		-o-transition: opacity .2s .2s ease, top .4s ease;
@@ -761,7 +788,7 @@
 	}
 
 	.responsive-sticky-header:not(.static-sticky) #logo,
-	.responsive-sticky-header:not(.static-sticky) #logo img { height: 60px; }
+	.responsive-sticky-header:not(.static-sticky) #logo img { height: 60px;}
 
 	.responsive-sticky-header:not(.static-sticky) #primary-menu-trigger { top: 5px; }
 
@@ -1075,7 +1102,24 @@
 
 
 @media (min-width: 768px) and (max-width: 991px) {
-
+    #logo img {
+	    max-width: 30% !important;
+	    width: 30% !important;
+	}
+	.social-appstore {
+	    width: 25%;
+	    margin-top: -25px;
+	}
+	.social-appstore-1 {
+	    width: 25%;
+	    margin-top: -85px;
+	}
+	.index-head {
+	    margin-top: 265px !important;
+	}
+	.headervideo {
+	    width: 45%;
+	}
 	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid),
 	.swiper_wrapper:not(.full-screen):not(.canvas-slider-grid) .swiper-slide { height: 400px !important; }
 
@@ -1418,7 +1462,7 @@
 
 	.title-block h4 + span { font-size: 13px; }
 
-	.heading-block h1 { font-size: 30px; }
+	/*.heading-block h1 { font-size: 30px; }*/
 
 	.heading-block h2 { font-size: 26px; }
 
@@ -1461,7 +1505,7 @@
 
 	#copyrights .col_half { text-align: center; }
 
-	#copyrights .col_half:last-child { display: none; }
+	/*#copyrights .col_half:last-child { display: none; }*/
 
 	#copyrights .footer-logo {
 		margin-left: auto;
@@ -1471,7 +1515,30 @@
 }
 
 @media (min-width: 480px) and (max-width: 767px) {
-
+	#logo img {
+	    max-width: 35% !important;
+	    width: 35% !important;
+	}
+	.social-appstore-1 {
+	    width: 30%;
+	    margin-top: -68px;
+	}
+	.social-appstore {
+	    width: 30%;
+	    margin-top: -23px;
+	}
+	#slider{
+		background-size: 140%!important;
+	}
+	.heading-block h1 {
+	    font-size: 25px !important;
+	}
+	.headervideo {
+	    width: 60%;
+	}
+	.copyrights-menu {
+	    margin-right: 18%;
+	}
 	.container,
 	#header.full-header .container,
 	.container-fullwidth { width: 470px !important; }
@@ -1612,9 +1679,9 @@
 
 @media (max-width: 479px) {
 
-	.container,
+	.container{width: 310px;}
 	#header.full-header .container,
-	.container-fullwidth { width: 310px !important; }
+	.container-fullwidth { width: 360px !important; }
 
 	.container.vertical-middle { width: 100% !important; }
 
